@@ -1,0 +1,17 @@
+{
+  "name": "dockerization",
+  "version": "1.0.0",
+  "description": "Basic docerizing the server ",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "author": "Parbat Lama",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "nodemon": "^2.0.16"
+  }
+}
