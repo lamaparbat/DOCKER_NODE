@@ -14,7 +14,7 @@ server.use(cors());
 //routes
 server.get("/", (req, res) => {
  console.log("Server has now started... !!");
- res.status(200).send("Server has now started !!")
+ res.status(200).send("Server has now started !!.")
 });
 
 //listener
