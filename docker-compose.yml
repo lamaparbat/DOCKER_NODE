@@ -11,6 +11,10 @@ services:
 
   server:
     build: .
+    deploy:
+      resources: 
+        limits:
+          cpu: '0.5'
     restart: always
     # ports:
     #   - 3000:3000
