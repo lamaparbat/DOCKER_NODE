@@ -1,8 +1,37 @@
-version: '3'
+version: "3.8"
+
 services:
-  first-container:
-    build: .
+  mongodb:
+    image: mongo:latest
+    restart: always
     ports:
-      - "3000:3000"
-    env_file:
-      - ./.env
+      - 2777:27017
+    volumes:
+      - mongdb:/data/db
+
+  server:
+    build: .
+    deploy:
+      resources: 
+        limits:
+          cpu: '0.5'
+    restart: always
+    # ports:
+    #   - 3000:3000
+    environment:
+      # - PORT=3000
+      - MONGO_URL=mongodb://mongodb:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.0.1
+    depends_on: # only start this server after mongdb service started successfully
+      - mongodb
+  
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./conf.d:/etc/nginx/conf.d
+    depends_on:
+      - server
+    ports:
+      - 3000:3000
+
+volumes:
+  mongdb: {}
